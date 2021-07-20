@@ -1,6 +1,7 @@
 <template>
   <div>
-    <px-assets-table :assets="assets" />
+    <bounce-loader :loading="isLoading" :color="'#68d391'" :size="100" />
+    <px-assets-table v-if="!isLoading" :assets="assets" />
   </div>
 </template>
 
@@ -15,14 +16,22 @@ export default {
 
   data() {
     return {
+      isLoading: false,
       assets: [],
     };
   },
 
   async created() {
-    const assets = await getAssets(100);
-    this.assets = assets;
-    return this.assets;
+    this.isLoading = true;
+    try {
+      const assets = await getAssets(100);
+      this.assets = assets;
+      return this.assets;
+    } catch (err) {
+      console.error(err);
+    } finally {
+      this.isLoading = false;
+    }
   },
 };
 </script>
