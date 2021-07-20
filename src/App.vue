@@ -1,6 +1,6 @@
 <template>
   <main>
-    <router-link to="/"><px-header /></router-link>
+    <px-header />
 
     <router-view class="container px-5 sm:px-20 py-20 flex justify-center" />
   </main>
