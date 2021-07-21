@@ -24,7 +24,7 @@ export default {
   async created() {
     this.isLoading = true;
     try {
-      const assets = await getAssets(100);
+      const assets = await getAssets(20);
       this.assets = assets;
       return this.assets;
     } catch (err) {
